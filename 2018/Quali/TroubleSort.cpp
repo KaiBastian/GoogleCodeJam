@@ -12,7 +12,7 @@ int solveFast(vector<unsigned>& a, vector<unsigned>& b)
 {
 	sort(a.begin(), a.end());
 	sort(b.begin(), b.end());
-	
+
 	for (unsigned i = 0; i < a.size(); ++i)
 	{
 		const unsigned bIndex = i;
@@ -28,7 +28,7 @@ int solveFast(vector<unsigned>& a, vector<unsigned>& b)
 				return 2 * i + 1;
 		}
 	}
-	
+
 	return -1;
 }
 
@@ -36,7 +36,7 @@ int main()
 {
 	cin.tie(nullptr);
     ios::sync_with_stdio(false);
-    
+
 	uint_fast64_t t;
 	cin >> t;
 	for (uint_fast64_t tNumber = 1u; tNumber < t + 1; ++tNumber)
@@ -56,7 +56,7 @@ int main()
 			else
 				b.push_back(elem);
 		}
-		
+
 		const int solution = solveFast(a, b);
 		cout << "Case #" << tNumber << ": ";
 		if (solution == -1)

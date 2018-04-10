@@ -22,20 +22,20 @@ Rectangle findBestRectangle(unsigned minArea)
 	constexpr unsigned minEdgeLength = 3u;
 	constexpr unsigned maxEdgeLength = edgeLength;
 	Rectangle bestRectangle = {1000u, 1000u};
-	
+
 	for (unsigned i = minEdgeLength; i < maxEdgeLength; ++i)
 	{
 		for (unsigned j = minEdgeLength; j < maxEdgeLength; ++j)
 		{
 			Rectangle suggestion = {i, j};
-			if (suggestion.calcArea() >= minArea && 
+			if (suggestion.calcArea() >= minArea &&
 				suggestion.calcArea() < bestRectangle.calcArea())
 			{
 				bestRectangle = suggestion;
 			}
 		}
 	}
-	
+
 	return bestRectangle;
 }
 
@@ -47,7 +47,7 @@ public:
         : size_(size)
         , content_(size * size, initial)
     {}
-    
+
     size_t size() const { return size_; }
 
     T at(size_t row, size_t column) const
@@ -100,7 +100,7 @@ public:
 			return top.second;
 		}
 	}
-	
+
 private:
 	unsigned calcFieldValue(Field f) const
 	{
@@ -117,7 +117,7 @@ private:
 		}
 		return fields;
 	}
-		
+
 private:
 	Rectangle target_;
 	const Matrix2<bool>& garden_;
@@ -158,7 +158,7 @@ int solve()
 	Matrix2<bool> garden(edgeLength, false);
 	const Rectangle targetRect = findBestRectangle(targetArea);
 	FieldSuggester suggester(targetRect, garden);
-	
+
 	while (true)
 	{
 		Field nextRequest = suggester.suggest();
@@ -169,15 +169,15 @@ int solve()
 		if (response.first == 0)
 			break;
 		Field resultingField = response.second;
-		
-		const bool wasProcessed = 
+
+		const bool wasProcessed =
 			garden.at(resultingField.first, resultingField.second);
 		if (wasProcessed)
 			continue;
 
 		garden.set(resultingField.first, resultingField.second);
 	}
-	
+
 	return 0;
 }
 

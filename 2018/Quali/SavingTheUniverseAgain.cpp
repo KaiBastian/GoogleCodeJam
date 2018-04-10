@@ -26,7 +26,7 @@ public:
 		}
 		clearEnd();
 	}
-	
+
 	int reduceToDamage(uint_fast64_t targetDamage)
 	{
 		uint_fast64_t currentDamage = calculateCurrentDamage();
@@ -40,11 +40,11 @@ public:
 			shots_[highestSlot]--;
 			shots_[secondHighestSlot]++;
 			clearEnd();
-			
+
 			numberOfSteps++;
 			currentDamage -= dmgReduction;
 		}
-		
+
 		if (currentDamage <= targetDamage)
 			return numberOfSteps;
 		return -1;
@@ -60,12 +60,12 @@ private:
 		}
 		return damage;
 	}
-	
+
 	uint_fast64_t calculateDmgForSlot(uint_fast64_t slot) const
 	{
 		return pow(2.0, static_cast<double>(slot));
 	}
-	
+
 	void clearEnd()
 	{
 		while (shots_.back() == 0u)
@@ -73,7 +73,7 @@ private:
 			shots_.pop_back();
 		}
 	}
-	
+
 private:
 	vector<uint_fast64_t> shots_;
 };
@@ -82,7 +82,7 @@ int main()
 {
 	cin.tie(nullptr);
     ios::sync_with_stdio(false);
-    
+
 	uint_fast64_t t;
 	cin >> t;
 	for (uint_fast64_t tNumber = 1u; tNumber < t + 1; ++tNumber)
